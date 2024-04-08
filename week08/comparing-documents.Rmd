@@ -108,6 +108,7 @@ head(textstat_keyness(cdfm, target=kc$cluster==4),n=20)
 Hierarchical clustering is an alternative approach to group documents. It relies on the matrix of distances between documents and works from the bottom up to create clusters: starting with lowest pairwise distance, then sequentially merges documents into clusters as the distances become larger.
 
 ```{r}
+install.packages('quanteda.corpora')
 library(quanteda.corpora)
 pres_dfm <- dfm(corpus_subset(data_corpus_sotu, Date > "1980-01-01"), 
                stem = TRUE, remove_punct = TRUE,
