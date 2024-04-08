@@ -26,7 +26,7 @@ As an example, let us consider Newton's Principia (1687) in its English translat
 The PDF is parsed into R using the `pdf_text` function which returns a character vector with one row corresponding to one page:
 
 ```{r}
-principia <- pdf_text("principia.pdf")
+principia <- pdf_text("general_theory_cover.pdf")
 class(principia)
 length(principia)
 ```
@@ -52,6 +52,8 @@ From here on, we could create a dfm etc.
 Things become much trickier if the PDFs do not contain machine-readable text, but instead image such as scans. You can usually detect this case if you cannot select text in a PDF with your mouse. Yet, there is open source OCR (optical character recognition) software which can be used. In R, the package `tesseract` offers an implementation of Google's Tesseract and `pdftools` has a function which implicitly calls the `tesseract` package. As an example, I have added a photo of the first edition cover of Keynes's General Theory (1936) to the course repo. The following uses OCR software to detect the text on the image and to transform it into machine readable text:
 
 ```{r}
+install.packages('tesseract')
+library(tesseract)
 general_theory_cover <- pdf_ocr_text(pdf = "general_theory_cover.pdf", language = "eng", dpi = 300)
 general_theory_cover
 ```
